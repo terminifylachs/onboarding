@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ExternalLink, Play } from 'lucide-react'
 
@@ -75,15 +76,13 @@ const LandingPage = () => {
 
         {/* CTA */}
         <div className="cta-button">
-          <a 
-            href="/questionnaire" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <Link
+            to="/questionnaire"
             className="group relative inline-flex items-center gap-3 bg-signal-blue hover:bg-highlight-blue text-white px-10 py-5 rounded-xs font-bold text-lg transition-all duration-300 shadow-xl shadow-signal-blue/20 hover:shadow-highlight-blue/30"
           >
             Fragebogen starten
             <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </a>
+          </Link>
         </div>
       </main>
 
