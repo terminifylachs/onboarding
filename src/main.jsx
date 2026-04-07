@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/terminify-onboarding">
       <App />
     </BrowserRouter>
   </React.StrictMode>,
