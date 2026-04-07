@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { CheckCircle2, Save, Send, ChevronLeft, Upload, AlertCircle, X, Image as ImageIcon, Users, Settings, Database, MessageSquare } from 'lucide-react'
+import logo from '../../infos/logo.png'
 
 // Custom hook for localStorage persistence
 const useLocalStorage = (key, initialValue) => {
@@ -221,7 +222,7 @@ const QuestionnairePage = () => {
       <header className="sticky top-0 z-50 bg-void-navy/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-             <img src="/infos/logo.png" alt="Terminify Logo" className="h-6 w-auto object-contain" />
+             <img src={logo} alt="Terminify Logo" className="h-6 w-auto object-contain" />
           </div>
           <div className="flex items-center gap-4">
              <button 

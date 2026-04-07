@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ExternalLink, Play } from 'lucide-react'
+import logo from '../../infos/logo.png'
 
 const LandingPage = () => {
   const containerRef = useRef(null)
@@ -30,7 +31,7 @@ const LandingPage = () => {
       {/* Navbar */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-8 md:px-12 max-w-7xl mx-auto w-full">
         <div className="flex items-center gap-3">
-          <img src="/infos/logo.png" alt="Terminify Logo" className="h-8 w-auto object-contain" />
+          <img src={logo} alt="Terminify Logo" className="h-8 w-auto object-contain" />
         </div>
       </nav>
 
