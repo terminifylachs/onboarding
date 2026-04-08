@@ -173,10 +173,8 @@ const LandingPage = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-between px-6 py-8 md:px-12 max-w-7xl mx-auto w-full">
-        <div className="flex items-center gap-3">
-          <img src={logo} alt="Terminify Logo" className="h-8 w-auto object-contain" />
-        </div>
+      <nav className="relative z-10 flex items-center justify-center px-6 py-8 md:px-12 max-w-7xl mx-auto w-full">
+        <img src={logo} alt="Terminify Logo" className="h-8 w-auto object-contain" />
       </nav>
 
       {/* Hero Content */}
@@ -241,9 +239,9 @@ const LandingPage = () => {
             <span className="text-xs text-muted-text">© 2026 Alle Rechte vorbehalten.</span>
           </div>
           <div className="flex gap-8 text-[10px] uppercase tracking-[0.15em] font-mono text-muted-text">
-            <a href="#" className="hover:text-highlight-blue transition-colors">Impressum</a>
-            <a href="#" className="hover:text-highlight-blue transition-colors">Datenschutz</a>
-            <a href="#" className="hover:text-highlight-blue transition-colors">AGB</a>
+            <a href="https://vsl.terminify.ai/impressum/" className="hover:text-highlight-blue transition-colors">Impressum</a>
+            <a href="https://vsl.terminify.ai/datenschutz/" className="hover:text-highlight-blue transition-colors">Datenschutz</a>
+            <a href="https://vsl.terminify.ai/agb/" className="hover:text-highlight-blue transition-colors">AGB</a>
           </div>
         </div>
       </footer>
