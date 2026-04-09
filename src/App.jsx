@@ -7,7 +7,7 @@ function App() {
     <div className="min-h-screen bg-void-navy text-white">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/questionnaire" element={<QuestionnairePage />} />
+        <Route path="/fragebogen" element={<QuestionnairePage />} />
       </Routes>
     </div>
   )

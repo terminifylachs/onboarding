@@ -54,7 +54,7 @@ const Textarea = ({ label, placeholder, name, value, onChange, error }) => (
 
 const SectionHeader = ({ title, icon: Icon }) => (
   <div className="flex items-center gap-4 mb-8 pt-12 first:pt-0">
-    <div className="w-10 h-10 rounded-xs bg-signal-blue/10 border border-signal-blue/20 flex items-center justify-center text-signal-blue">
+    <div className="w-10 h-10 rounded-xs bg-highlight-blue/10 border border-highlight-blue/20 flex items-center justify-center text-highlight-blue">
       <Icon className="w-5 h-5" />
     </div>
     <h2 className="text-2xl font-black tracking-tight">{title}</h2>
@@ -251,7 +251,7 @@ const QuestionnairePage = () => {
 
       <main className="max-w-3xl mx-auto px-6 pt-16">
         <div className="mb-12">
-          <h1 className="text-4xl font-black mb-4 tracking-tight">Dein Chatbot</h1>
+          <h1 className="text-4xl font-black mb-4 tracking-tight">Dein Chatbot 🤖</h1>
           <p className="text-body-text">Fülle diesen Fragebogen bitte so detailliert wie möglich aus. Plane ca. 10–15 Minuten ein. Dein Fortschritt wird automatisch gespeichert.</p>
         </div>
 
@@ -376,7 +376,7 @@ const QuestionnairePage = () => {
                 {uploadedFiles.map((file, index) => (
                   <div key={index} className="bg-card-surface border border-white/10 p-4 rounded-xs flex items-center justify-between group">
                     <div className="flex items-center gap-3 overflow-hidden">
-                      <div className="w-10 h-10 bg-signal-blue/10 rounded-xs flex items-center justify-center text-signal-blue flex-shrink-0">
+                      <div className="w-10 h-10 bg-highlight-blue/10 rounded-xs flex items-center justify-center text-highlight-blue flex-shrink-0">
                         <ImageIcon className="w-5 h-5" />
                       </div>
                       <div className="flex flex-col overflow-hidden">
@@ -401,7 +401,7 @@ const QuestionnairePage = () => {
           <div className="pt-12">
             <div className="bg-signal-blue/5 border border-signal-blue/20 p-6 rounded-xs mb-8">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-signal-blue/10 flex items-center justify-center text-signal-blue flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-highlight-blue/10 flex items-center justify-center text-highlight-blue flex-shrink-0">
                   <AlertCircle className="w-6 h-6" />
                 </div>
                 <div>

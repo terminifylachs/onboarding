@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Play, Volume2, VolumeX, Sparkles, Lock } from 'lucide-react'
+import { ExternalLink, Play, Volume2, VolumeX, Rocket, Lock } from 'lucide-react'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
@@ -181,7 +181,7 @@ const LandingPage = () => {
             className="group relative flex flex-col items-center gap-6"
           >
             <div className="w-24 h-24 rounded-full border border-highlight-blue/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:border-highlight-blue group-hover:bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.1)]">
-                <Sparkles className="w-8 h-8 text-highlight-blue animate-pulse" />
+                <Rocket className="w-8 h-8 text-highlight-blue animate-pulse" />
             </div>
             <span className="text-white/60 uppercase tracking-[0.4em] text-xs font-bold group-hover:text-white transition-colors">
                 Onboarding starten
@@ -283,7 +283,7 @@ const LandingPage = () => {
         {/* CTA */}
         <div className="cta-button">
           <Link
-            to="/questionnaire"
+            to="/fragebogen"
             target="_blank"
             rel="noopener noreferrer"
             className="group relative inline-flex items-center gap-3 bg-signal-blue hover:bg-highlight-blue text-white px-10 py-5 rounded-xs font-bold text-lg transition-all duration-300 shadow-xl shadow-signal-blue/20 hover:shadow-highlight-blue/30"
