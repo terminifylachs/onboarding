@@ -298,8 +298,8 @@ const QuestionnairePage = () => {
 
       <main className="max-w-3xl mx-auto px-6 pt-16">
         <div className="mb-12">
-          <h1 className="text-4xl font-black mb-4 tracking-tight">Dein Strategie-Profil</h1>
-          <p className="text-body-text">Fülle diesen Fragebogen bitte so detailliert wie möglich aus. Dein Fortschritt wird automatisch gespeichert.</p>
+          <h1 className="text-4xl font-black mb-4 tracking-tight">Dein Chatbot</h1>
+          <p className="text-body-text">Fülle diesen Fragebogen bitte so detailliert wie möglich aus. Plane ca. 10–15 Minuten ein. Dein Fortschritt wird automatisch gespeichert.</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-16">
@@ -321,7 +321,7 @@ const QuestionnairePage = () => {
             <div className="space-y-8">
               <Input label="Wie heißt deine Firma, falls vorhanden?" name="firma" value={formData.firma} onChange={handleChange} placeholder="z.B. Muster Consulting GmbH" error={errors.firma} />
               <Input label="Brand oder Markenname, falls anders als Firmenname?" name="brand" value={formData.brand} onChange={handleChange} placeholder="z.B. Max Fitness Coaching" error={errors.brand} />
-              <Input label="Seit wann machst du das, was du machst?" name="seitWann" value={formData.seitWann} onChange={handleChange} placeholder="z.B. seit 2021 oder seit 5 Jahren" error={errors.seitWann} />
+              <Input label="Seit wann machst du das Coaching?" name="seitWann" value={formData.seitWann} onChange={handleChange} placeholder="z.B. seit 2021 oder seit 5 Jahren" error={errors.seitWann} />
               <Textarea label="Hast du relevante Ausbildungen oder Zertifikate?" name="ausbildungen" value={formData.ausbildungen} onChange={handleChange} placeholder="z.B. Ernährungsberater, Personal Trainer A-Lizenz oder Physiotherapeut" error={errors.ausbildungen} />
             </div>
           </section>
@@ -453,7 +453,7 @@ const QuestionnairePage = () => {
                 </div>
                 <div>
                   <h3 className="text-sm font-bold uppercase tracking-wider mb-1">Letzter Check</h3>
-                  <p className="text-sm text-body-text">Bitte prüfe deine Angaben noch einmal sorgfältig auf Richtigkeit, bevor du den Fragebogen abschickst. Nur mit korrekten Daten können wir eine optimale Strategie für dich entwickeln.</p>
+                  <p className="text-sm text-body-text">Bitte prüfe deine Angaben noch einmal sorgfältig, bevor du abschickst. Nur mit korrekten Daten können wir den besten Chatbot für dich bauen.</p>
                 </div>
               </div>
             </div>
