@@ -178,9 +178,8 @@ const LandingPage = () => {
 
       {/* Hero Content */}
       <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-4 pb-24 max-w-5xl mx-auto text-center flex-grow">
-        <h1 className="hero-headline text-4xl md:text-6xl lg:text-7xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
-          Schritt 1: <br />
-          <span className="text-highlight-blue">Schau dir das Video an.</span>
+        <h1 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
+          Schritt 1: <span className="text-highlight-blue">Schau dir das Video an.</span>
         </h1>
 
         {/* Video Frame */}
@@ -213,9 +212,8 @@ const LandingPage = () => {
         </div>
 
         {/* Step 2 Heading */}
-        <h2 className="hero-headline text-4xl md:text-6xl lg:text-7xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
-          Schritt 2: <br />
-          <span className="text-highlight-blue">Fülle den Fragebogen aus.</span>
+        <h2 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
+          Schritt 2: <span className="text-highlight-blue">Fülle den Fragebogen aus.</span>
         </h2>
 
         {/* CTA */}
