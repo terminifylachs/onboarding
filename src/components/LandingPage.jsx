@@ -237,9 +237,9 @@ const LandingPage = () => {
             <span className="text-xs text-muted-text">Terminify © 2026 Alle Rechte vorbehalten.</span>
           </div>
           <div className="flex gap-8 text-[10px] uppercase tracking-[0.15em] font-mono text-muted-text">
-            <a href="https://vsl.terminify.ai/impressum/" className="hover:text-highlight-blue transition-colors">Impressum</a>
-            <a href="https://vsl.terminify.ai/datenschutz/" className="hover:text-highlight-blue transition-colors">Datenschutz</a>
-            <a href="https://vsl.terminify.ai/agb/" className="hover:text-highlight-blue transition-colors">AGB</a>
+            <a href="https://vsl.terminify.ai/impressum/" target="_blank" rel="noopener noreferrer" className="hover:text-highlight-blue transition-colors">Impressum</a>
+            <a href="https://vsl.terminify.ai/datenschutz/" target="_blank" rel="noopener noreferrer" className="hover:text-highlight-blue transition-colors">Datenschutz</a>
+            <a href="https://vsl.terminify.ai/agb/" target="_blank" rel="noopener noreferrer" className="hover:text-highlight-blue transition-colors">AGB</a>
           </div>
         </div>
       </footer>
