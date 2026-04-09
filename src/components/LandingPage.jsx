@@ -185,9 +185,9 @@ const LandingPage = () => {
         </h1>
 
         {/* Video Frame */}
-        <div className="video-container relative w-full aspect-video max-w-4xl mx-auto mb-16 rounded-md border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
+        <div className="video-container relative w-full max-w-4xl mx-auto mb-16 rounded-md border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
           {/* macOS Traffic Lights */}
-          <div className="absolute top-0 left-0 w-full h-10 bg-[#1A1C23] flex items-center px-4 border-b border-white/5 z-20">
+          <div className="w-full h-10 bg-[#1A1C23] flex items-center px-4 border-b border-white/5">
             <div className="flex gap-2 mr-6">
               <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
               <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
@@ -198,14 +198,14 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* Wistia Video Embed */}
-          <div className="w-full h-full pt-10">
+          {/* Wistia Responsive Video Embed */}
+          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
             <iframe
               src="https://fast.wistia.net/embed/iframe/t8l8uaniys?seo=true&videoFoam=true"
               title="Terminify Onboarding-Video"
               allow="autoplay; fullscreen"
               allowFullScreen
-              className="w-full h-full border-0"
+              className="absolute inset-0 w-full h-full border-0"
             />
           </div>
         </div>
