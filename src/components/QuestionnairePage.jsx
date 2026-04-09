@@ -82,46 +82,6 @@ const QuestionnairePage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
-  const fillTestData = () => {
-    setFormData({
-      fullName: 'Max Mustermann',
-      email: 'max@mustermann-consulting.de',
-      instagram: '@max_power_coaching',
-      firma: 'Mustermann Consulting GmbH',
-      brand: 'Max Power Coaching',
-      seitWann: 'Seit Januar 2020',
-      ausbildungen: 'Zertifizierter Business Coach, Master in Psychologie, 10 Jahre Vertriebserfahrung',
-      angebotWas: '1:1 Mentoring für Agenturinhaber zur Skalierung auf 50k Monatsumsatz',
-      angebotName: 'Agency Accelerator Platinum',
-      angebotFuerWen: 'Agenturinhaber zwischen 10k und 25k Monatsumsatz',
-      hauptproblem: 'Zu viel Zeit im Tagesgeschäft gefangen, keine systematische Kundengewinnung',
-      transformation: 'Vom Selbstständigen zum Unternehmer, 40h Arbeitswoche bei doppeltem Umsatz',
-      dauer: '6 Monate',
-      format: 'Hybrid (Online-Plattform + wöchentliche Live-Calls)',
-      inhalt: 'Vollständige Sales-Skripte, CRM-Setup, Mitarbeiter-Onboarding-Prozess, WhatsApp-Support',
-      methode: 'Die "Terminify-Pipeline" für automatisierte Qualifizierung',
-      unterschied: 'Keine graue Theorie, sondern praxiserprobte Systeme aus über 100 eigenen Projekten',
-      kundenAnzahl: 'Über 150 erfolgreiche Absolventen',
-      bewertungen: '4.9 Sterne auf Trustpilot, zahlreiche Video-Testimonials auf der Website',
-      referenzen: 'Bekannt aus dem Handelsblatt, Gast im "Scale Up" Podcast',
-      gespraechName: 'Potenzial-Analyse',
-      gespraechDauer: '45 Minuten',
-      gespraechArt: 'Zoom Video-Call',
-      gespraechInhalt: 'Ist-Zustand Analyse, Engpass-Identifikation, Fahrplan-Erstellung',
-      gespraechWer: 'Ich selbst oder mein Senior Strategie-Berater',
-      disqualifikation: 'Unter 5k Umsatz, keine Investitionsbereitschaft, "Lern-Resistenz"',
-      followUp: 'Ja, per WhatsApp mit personalisierter Video-Botschaft',
-      setterStatus: '2 festangestellte DM-Setter',
-      mitarbeiterEmails: 'vertrieb@mustermann.de, support@mustermann.de',
-      crm: 'GoHighLevel',
-      manyChat: 'Ja, für die Lead-Qualifizierung in DMs',
-      besonderheiten: 'Wir arbeiten nur mit Agenturen aus dem DACH-Raum zusammen',
-      sonstiges: 'Freuen uns auf die Zusammenarbeit und die Automatisierung!'
-    })
-    setErrors({})
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const handleDragOver = (e) => {
     e.preventDefault()
     setIsDragging(true)
@@ -284,15 +244,8 @@ const QuestionnairePage = () => {
     <div ref={containerRef} className="min-h-screen bg-void-navy pb-32 font-sans">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-void-navy/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="w-32" /> {/* Spacer */}
+        <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-center">
           <img src={logo} alt="Terminify Logo" className="h-6 w-auto object-contain" />
-          <button 
-            onClick={fillTestData}
-            className="text-[10px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-xs border border-white/10 hover:bg-white/5 transition-colors text-muted-text hover:text-white"
-          >
-            Test-Daten laden
-          </button>
         </div>
       </header>
 

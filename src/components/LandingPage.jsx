@@ -2,18 +2,38 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Play, Volume2, VolumeX, Sparkles } from 'lucide-react'
+import { ExternalLink, Play, Volume2, VolumeX, Sparkles, Lock } from 'lucide-react'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
 import cinematicSound from '../../infos/sound-2.wav'
 
+const ACCESS_CODE = '0000'
+
 const LandingPage = () => {
   const containerRef = useRef(null)
   const [hasStarted, setHasStarted] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
+  const [isUnlocked, setIsUnlocked] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.sessionStorage.getItem('terminify-unlocked') === 'true'
+  })
+  const [codeInput, setCodeInput] = useState('')
+  const [codeError, setCodeError] = useState(false)
   // Using local cinematic sound
   const audioRef = useRef(new Audio(cinematicSound))
+
+  const handleUnlock = (e) => {
+    e.preventDefault()
+    if (codeInput === ACCESS_CODE) {
+      setIsUnlocked(true)
+      setCodeError(false)
+      window.sessionStorage.setItem('terminify-unlocked', 'true')
+    } else {
+      setCodeError(true)
+      setCodeInput('')
+    }
+  }
 
   const startExperience = () => {
     setHasStarted(true)
@@ -104,6 +124,50 @@ const LandingPage = () => {
       audioRef.current.pause()
     }
   }, [hasStarted])
+
+  if (!isUnlocked) {
+    return (
+      <div className="relative min-h-screen bg-void-navy overflow-hidden flex flex-col items-center justify-center font-sans px-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-highlight-blue/10 via-transparent to-transparent opacity-50 pointer-events-none" />
+        <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-highlight-blue/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-signal-blue/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <form
+          onSubmit={handleUnlock}
+          className="relative z-10 flex flex-col items-center gap-8 w-full max-w-sm"
+        >
+          <div className="w-20 h-20 rounded-full border border-highlight-blue/30 flex items-center justify-center bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.15)]">
+            <Lock className="w-7 h-7 text-highlight-blue" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-2xl font-black tracking-tight mb-2">Geschützter Bereich</h1>
+            <p className="text-sm text-muted-text">Bitte gib den Zugangscode ein.</p>
+          </div>
+          <input
+            type="password"
+            inputMode="numeric"
+            autoFocus
+            value={codeInput}
+            onChange={(e) => {
+              setCodeInput(e.target.value)
+              if (codeError) setCodeError(false)
+            }}
+            placeholder="Zugangscode"
+            className={`w-full text-center text-xl tracking-[0.5em] font-mono px-6 py-4 rounded-xs bg-void-depth border ${codeError ? 'border-reject-red' : 'border-white/10'} focus:border-highlight-blue focus:outline-none transition-colors`}
+          />
+          {codeError && (
+            <p className="text-xs text-reject-red -mt-4">Falscher Code. Bitte erneut versuchen.</p>
+          )}
+          <button
+            type="submit"
+            className="w-full bg-signal-blue hover:bg-highlight-blue text-white px-8 py-4 rounded-xs font-bold text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-signal-blue/20 hover:shadow-highlight-blue/30"
+          >
+            Entsperren
+          </button>
+        </form>
+      </div>
+    )
+  }
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-void-navy overflow-hidden flex flex-col font-sans">
