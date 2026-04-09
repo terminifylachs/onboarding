@@ -179,13 +179,13 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-[1040px] mx-auto text-center flex-grow">
+      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-[1200px] mx-auto text-center flex-grow">
         <h1 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
           <span className="text-highlight-blue">Schritt 1:</span> Schau dir das Video an.
         </h1>
 
         {/* Video Frame */}
-        <div className="video-container relative w-full max-w-[860px] mx-auto mb-16 rounded-[14px] border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
+        <div className="video-container relative w-full max-w-[1100px] mx-auto mb-16 rounded-[14px] border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
           {/* macOS Traffic Lights */}
           <div className="w-full h-10 bg-[#1A1C23] flex items-center px-4 border-b border-white/5">
             <div className="flex gap-2 mr-6">
@@ -198,16 +198,8 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* Wistia Responsive Video Embed */}
-          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-            <iframe
-              src="https://fast.wistia.net/embed/iframe/t8l8uaniys?seo=true&videoFoam=true&qualityMin=1080&qualityMax=2160"
-              title="Terminify Onboarding-Video"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              className="absolute inset-0 w-full h-full border-0"
-            />
-          </div>
+          {/* Wistia Web Component Embed */}
+          <wistia-player media-id="t8l8uaniys" aspect="1.7777777777777777" />
         </div>
 
         {/* Step 2 Heading */}
