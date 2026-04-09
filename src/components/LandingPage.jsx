@@ -179,13 +179,13 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-[1800px] mx-auto text-center flex-grow">
+      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-[1040px] mx-auto text-center flex-grow">
         <h1 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
           <span className="text-highlight-blue">Schritt 1:</span> Schau dir das Video an.
         </h1>
 
         {/* Video Frame */}
-        <div className="video-container relative w-full max-w-[1800px] mx-auto mb-16 rounded-md border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
+        <div className="video-container relative w-full max-w-[860px] mx-auto mb-16 rounded-[14px] border border-white/10 bg-void-depth shadow-2xl overflow-hidden">
           {/* macOS Traffic Lights */}
           <div className="w-full h-10 bg-[#1A1C23] flex items-center px-4 border-b border-white/5">
             <div className="flex gap-2 mr-6">
