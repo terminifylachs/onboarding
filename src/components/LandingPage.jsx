@@ -2,75 +2,18 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Play, Volume2, VolumeX, Rocket, Lock } from 'lucide-react'
+import { ExternalLink, Play, Volume2, VolumeX, Rocket } from 'lucide-react'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
 import cinematicSound from '../../infos/sound-2.wav'
 
-const ACCESS_CODE = '0000'
-
 const LandingPage = () => {
   const containerRef = useRef(null)
   const [hasStarted, setHasStarted] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
-  const [isUnlocked, setIsUnlocked] = useState(() => {
-    if (typeof window === 'undefined') return false
-    return window.sessionStorage.getItem('terminify-unlocked') === 'true'
-  })
-  const [codeDigits, setCodeDigits] = useState(['', '', '', ''])
-  const [codeError, setCodeError] = useState(false)
-  const codeInputsRef = useRef([])
   // Using local cinematic sound
   const audioRef = useRef(new Audio(cinematicSound))
-
-  const tryUnlock = (digits) => {
-    if (digits.join('') === ACCESS_CODE) {
-      setIsUnlocked(true)
-      setCodeError(false)
-      window.sessionStorage.setItem('terminify-unlocked', 'true')
-    } else {
-      setCodeError(true)
-      setCodeDigits(['', '', '', ''])
-      codeInputsRef.current[0]?.focus()
-    }
-  }
-
-  const handleDigitChange = (index, value) => {
-    const sanitized = value.replace(/\D/g, '').slice(-1)
-    const next = [...codeDigits]
-    next[index] = sanitized
-    setCodeDigits(next)
-    if (codeError) setCodeError(false)
-
-    if (sanitized && index < 3) {
-      codeInputsRef.current[index + 1]?.focus()
-    }
-    if (next.every((d) => d !== '')) {
-      tryUnlock(next)
-    }
-  }
-
-  const handleDigitKeyDown = (index, e) => {
-    if (e.key === 'Backspace' && !codeDigits[index] && index > 0) {
-      codeInputsRef.current[index - 1]?.focus()
-    }
-  }
-
-  const handleDigitPaste = (e) => {
-    const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 4)
-    if (!pasted) return
-    e.preventDefault()
-    const next = ['', '', '', '']
-    for (let i = 0; i < pasted.length; i++) next[i] = pasted[i]
-    setCodeDigits(next)
-    if (codeError) setCodeError(false)
-    const focusIndex = Math.min(pasted.length, 3)
-    codeInputsRef.current[focusIndex]?.focus()
-    if (next.every((d) => d !== '')) {
-      tryUnlock(next)
-    }
-  }
 
   const startExperience = () => {
     setHasStarted(true)
@@ -161,47 +104,6 @@ const LandingPage = () => {
       audioRef.current.pause()
     }
   }, [hasStarted])
-
-  if (!isUnlocked) {
-    return (
-      <div className="relative min-h-screen bg-void-navy overflow-hidden flex flex-col items-center justify-center font-sans px-6">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-highlight-blue/10 via-transparent to-transparent opacity-50 pointer-events-none" />
-        <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-highlight-blue/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-signal-blue/5 blur-[120px] rounded-full pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-sm">
-          <div className="w-20 h-20 rounded-full border border-highlight-blue/30 flex items-center justify-center bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.15)]">
-            <Lock className="w-7 h-7 text-highlight-blue" />
-          </div>
-          <div className="text-center">
-            <h1 className="text-2xl font-black tracking-tight mb-2">Geschützter Bereich</h1>
-            <p className="text-sm text-muted-text">Bitte gib den Zugangscode ein.</p>
-          </div>
-          <div className="flex gap-3 justify-center">
-            {codeDigits.map((digit, index) => (
-              <input
-                key={index}
-                ref={(el) => (codeInputsRef.current[index] = el)}
-                type="password"
-                inputMode="numeric"
-                maxLength={1}
-                autoFocus={index === 0}
-                value={digit}
-                onChange={(e) => handleDigitChange(index, e.target.value)}
-                onKeyDown={(e) => handleDigitKeyDown(index, e)}
-                onPaste={handleDigitPaste}
-                onFocus={(e) => e.target.select()}
-                className={`w-14 h-16 text-center text-2xl font-mono font-bold rounded-xs bg-void-depth border ${codeError ? 'border-reject-red' : 'border-white/10'} focus:border-highlight-blue focus:outline-none transition-colors`}
-              />
-            ))}
-          </div>
-          {codeError && (
-            <p className="text-xs text-reject-red -mt-4">Falscher Code. Bitte erneut versuchen.</p>
-          )}
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div ref={containerRef} className="relative min-h-screen bg-void-navy overflow-hidden flex flex-col font-sans">
