@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Play, Volume2, VolumeX, Rocket } from 'lucide-react'
+import { ExternalLink, Volume2, VolumeX, Rocket } from 'lucide-react'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
@@ -198,17 +198,14 @@ const LandingPage = () => {
             </div>
           </div>
 
-          {/* Video Player Mockup */}
-          <div className="w-full h-full pt-10 relative group">
-            <div className="absolute inset-0 bg-void-navy/40 group-hover:bg-transparent transition-colors duration-500 z-10 flex items-center justify-center">
-               <button className="w-20 h-20 rounded-full bg-[#E53935] text-white flex items-center justify-center shadow-2xl transform transition-transform group-hover:scale-110">
-                 <Play className="w-8 h-8 fill-current ml-1" />
-               </button>
-            </div>
-            <img 
-              src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80" 
-              alt="Strategy Video" 
-              className="w-full h-full object-cover"
+          {/* Wistia Video Embed */}
+          <div className="w-full h-full pt-10">
+            <iframe
+              src="https://fast.wistia.net/embed/iframe/t8l8uaniys?seo=true&videoFoam=true"
+              title="Terminify Onboarding-Video"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+              className="w-full h-full border-0"
             />
           </div>
         </div>
