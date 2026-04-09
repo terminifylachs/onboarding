@@ -94,8 +94,7 @@ const LandingPage = () => {
         })
       
       // 3. Hero Content Fade-in
-      tl.from('.hero-badge', { y: 20, opacity: 0, duration: 0.8 }, '-=0.5')
-        .from('.hero-headline', { y: 30, opacity: 0 }, '-=0.6')
+      tl.from('.hero-headline', { y: 30, opacity: 0 }, '-=0.5')
         .from('.video-container', { scale: 0.98, opacity: 0, duration: 1.5 }, '-=0.8')
         .from('.cta-button', { y: 20, opacity: 0, duration: 0.8 }, '-=1')
     }, containerRef)
@@ -178,14 +177,10 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-12 pb-24 max-w-5xl mx-auto text-center flex-grow">
-        <div className="hero-badge mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-void-depth border border-highlight-blue/20 backdrop-blur-sm">
-          <span className="text-highlight-blue text-xs uppercase tracking-[0.2em] font-medium">✦ Onboarding</span>
-        </div>
-
+      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-4 pb-24 max-w-5xl mx-auto text-center flex-grow">
         <h1 className="hero-headline text-4xl md:text-6xl lg:text-7xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
-          Dein nächster Schritt: <br />
-          <span className="text-highlight-blue">Klicke das Video.</span>
+          Schritt 1: <br />
+          <span className="text-highlight-blue">Schau dir das Video an.</span>
         </h1>
 
         {/* Video Frame */}
@@ -198,7 +193,7 @@ const LandingPage = () => {
               <div className="w-3 h-3 rounded-full bg-[#28C840]" />
             </div>
             <div className="flex-1 bg-void-navy/50 rounded-xs h-6 flex items-center px-3 border border-white/5">
-              <span className="text-[10px] text-muted-text font-mono truncate">terminify.io/onboarding-strategy-video</span>
+              <span className="text-[10px] text-muted-text font-mono truncate">🚀 Terminify Onboarding-Video</span>
             </div>
           </div>
 
@@ -216,6 +211,12 @@ const LandingPage = () => {
             />
           </div>
         </div>
+
+        {/* Step 2 Heading */}
+        <h2 className="hero-headline text-4xl md:text-6xl lg:text-7xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
+          Schritt 2: <br />
+          <span className="text-highlight-blue">Fülle den Fragebogen aus.</span>
+        </h2>
 
         {/* CTA */}
         <div className="cta-button">
@@ -235,8 +236,7 @@ const LandingPage = () => {
       <footer className="relative z-10 border-t border-white/5 mt-auto bg-void-depth/50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-6 py-12 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex flex-col gap-2 items-center md:items-start">
-            <span className="text-sm font-bold opacity-80 uppercase tracking-widest">Terminify Onboarding</span>
-            <span className="text-xs text-muted-text">© 2026 Alle Rechte vorbehalten.</span>
+            <span className="text-xs text-muted-text">Terminify © 2026 Alle Rechte vorbehalten.</span>
           </div>
           <div className="flex gap-8 text-[10px] uppercase tracking-[0.15em] font-mono text-muted-text">
             <a href="https://vsl.terminify.ai/impressum/" className="hover:text-highlight-blue transition-colors">Impressum</a>
