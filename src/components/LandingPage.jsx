@@ -179,7 +179,7 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Content */}
-      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-4 pb-24 max-w-5xl mx-auto text-center flex-grow">
+      <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-5xl mx-auto text-center flex-grow">
         <h1 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
           <span className="text-highlight-blue">Schritt 1:</span> Schau dir das Video an.
         </h1>
