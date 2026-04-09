@@ -18,20 +18,57 @@ const LandingPage = () => {
     if (typeof window === 'undefined') return false
     return window.sessionStorage.getItem('terminify-unlocked') === 'true'
   })
-  const [codeInput, setCodeInput] = useState('')
+  const [codeDigits, setCodeDigits] = useState(['', '', '', ''])
   const [codeError, setCodeError] = useState(false)
+  const codeInputsRef = useRef([])
   // Using local cinematic sound
   const audioRef = useRef(new Audio(cinematicSound))
 
-  const handleUnlock = (e) => {
-    e.preventDefault()
-    if (codeInput === ACCESS_CODE) {
+  const tryUnlock = (digits) => {
+    if (digits.join('') === ACCESS_CODE) {
       setIsUnlocked(true)
       setCodeError(false)
       window.sessionStorage.setItem('terminify-unlocked', 'true')
     } else {
       setCodeError(true)
-      setCodeInput('')
+      setCodeDigits(['', '', '', ''])
+      codeInputsRef.current[0]?.focus()
+    }
+  }
+
+  const handleDigitChange = (index, value) => {
+    const sanitized = value.replace(/\D/g, '').slice(-1)
+    const next = [...codeDigits]
+    next[index] = sanitized
+    setCodeDigits(next)
+    if (codeError) setCodeError(false)
+
+    if (sanitized && index < 3) {
+      codeInputsRef.current[index + 1]?.focus()
+    }
+    if (next.every((d) => d !== '')) {
+      tryUnlock(next)
+    }
+  }
+
+  const handleDigitKeyDown = (index, e) => {
+    if (e.key === 'Backspace' && !codeDigits[index] && index > 0) {
+      codeInputsRef.current[index - 1]?.focus()
+    }
+  }
+
+  const handleDigitPaste = (e) => {
+    const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 4)
+    if (!pasted) return
+    e.preventDefault()
+    const next = ['', '', '', '']
+    for (let i = 0; i < pasted.length; i++) next[i] = pasted[i]
+    setCodeDigits(next)
+    if (codeError) setCodeError(false)
+    const focusIndex = Math.min(pasted.length, 3)
+    codeInputsRef.current[focusIndex]?.focus()
+    if (next.every((d) => d !== '')) {
+      tryUnlock(next)
     }
   }
 
@@ -132,10 +169,7 @@ const LandingPage = () => {
         <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-highlight-blue/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-signal-blue/5 blur-[120px] rounded-full pointer-events-none" />
 
-        <form
-          onSubmit={handleUnlock}
-          className="relative z-10 flex flex-col items-center gap-8 w-full max-w-sm"
-        >
+        <div className="relative z-10 flex flex-col items-center gap-8 w-full max-w-sm">
           <div className="w-20 h-20 rounded-full border border-highlight-blue/30 flex items-center justify-center bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.15)]">
             <Lock className="w-7 h-7 text-highlight-blue" />
           </div>
@@ -143,28 +177,28 @@ const LandingPage = () => {
             <h1 className="text-2xl font-black tracking-tight mb-2">Geschützter Bereich</h1>
             <p className="text-sm text-muted-text">Bitte gib den Zugangscode ein.</p>
           </div>
-          <input
-            type="password"
-            inputMode="numeric"
-            autoFocus
-            value={codeInput}
-            onChange={(e) => {
-              setCodeInput(e.target.value)
-              if (codeError) setCodeError(false)
-            }}
-            placeholder="Zugangscode"
-            className={`w-full text-center text-xl tracking-[0.5em] font-mono px-6 py-4 rounded-xs bg-void-depth border ${codeError ? 'border-reject-red' : 'border-white/10'} focus:border-highlight-blue focus:outline-none transition-colors`}
-          />
+          <div className="flex gap-3 justify-center">
+            {codeDigits.map((digit, index) => (
+              <input
+                key={index}
+                ref={(el) => (codeInputsRef.current[index] = el)}
+                type="password"
+                inputMode="numeric"
+                maxLength={1}
+                autoFocus={index === 0}
+                value={digit}
+                onChange={(e) => handleDigitChange(index, e.target.value)}
+                onKeyDown={(e) => handleDigitKeyDown(index, e)}
+                onPaste={handleDigitPaste}
+                onFocus={(e) => e.target.select()}
+                className={`w-14 h-16 text-center text-2xl font-mono font-bold rounded-xs bg-void-depth border ${codeError ? 'border-reject-red' : 'border-white/10'} focus:border-highlight-blue focus:outline-none transition-colors`}
+              />
+            ))}
+          </div>
           {codeError && (
             <p className="text-xs text-reject-red -mt-4">Falscher Code. Bitte erneut versuchen.</p>
           )}
-          <button
-            type="submit"
-            className="w-full bg-signal-blue hover:bg-highlight-blue text-white px-8 py-4 rounded-xs font-bold text-sm uppercase tracking-widest transition-all duration-300 shadow-xl shadow-signal-blue/20 hover:shadow-highlight-blue/30"
-          >
-            Entsperren
-          </button>
-        </form>
+        </div>
       </div>
     )
   }
