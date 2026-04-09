@@ -173,7 +173,7 @@ const LandingPage = () => {
 
       {/* Navbar */}
       <nav className="relative z-10 flex items-center justify-center px-6 py-8 md:px-12 max-w-7xl mx-auto w-full">
-        <img src={logo} alt="Terminify Logo" className="h-8 w-auto object-contain" />
+        <img src={logo} alt="Terminify Logo" className="h-6 w-auto object-contain" />
       </nav>
 
       {/* Hero Content */}
