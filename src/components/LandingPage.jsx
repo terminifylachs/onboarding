@@ -172,9 +172,11 @@ const LandingPage = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-center px-6 py-8 md:px-12 max-w-7xl mx-auto w-full">
-        <img src={logo} alt="Terminify Logo" className="h-6 w-auto object-contain" />
-      </nav>
+      <header className="sticky top-0 z-50 bg-void-navy/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-4xl mx-auto px-6 h-20 flex items-center justify-center">
+          <img src={logo} alt="Terminify Logo" className="h-6 w-auto object-contain" />
+        </div>
+      </header>
 
       {/* Hero Content */}
       <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-4 pb-24 max-w-5xl mx-auto text-center flex-grow">
