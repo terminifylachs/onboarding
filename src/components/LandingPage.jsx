@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Volume2, VolumeX, Rocket, ArrowDown } from 'lucide-react'
+import { ExternalLink, Volume2, VolumeX, Rocket, ArrowUp } from 'lucide-react'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
@@ -112,24 +112,19 @@ const LandingPage = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-highlight-blue/10 via-transparent to-transparent opacity-50" />
         
         {!hasStarted ? (
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-col items-center gap-2 text-highlight-blue">
-              <span className="text-sm md:text-base font-medium">Klicke hier, um dein Onboarding zu starten</span>
-              <ArrowDown className="w-6 h-6 animate-bounce" />
+          <button
+            onClick={startExperience}
+            className="group relative flex flex-col items-center gap-4"
+          >
+            <div className="w-24 h-24 rounded-full border border-highlight-blue/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:border-highlight-blue group-hover:bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.1)]">
+                <Rocket className="w-8 h-8 text-highlight-blue animate-pulse" />
             </div>
-            <button
-              onClick={startExperience}
-              className="group relative flex flex-col items-center gap-6"
-            >
-              <div className="w-24 h-24 rounded-full border border-highlight-blue/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:border-highlight-blue group-hover:bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.1)]">
-                  <Rocket className="w-8 h-8 text-highlight-blue animate-pulse" />
-              </div>
-              <span className="text-white/60 uppercase tracking-[0.4em] text-xs font-bold group-hover:text-white transition-colors">
-                  Onboarding starten
-              </span>
-              <div className="absolute -inset-20 bg-highlight-blue/10 blur-[120px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            </button>
-          </div>
+            <ArrowUp className="w-5 h-5 text-white/60 animate-bounce group-hover:text-white transition-colors" />
+            <span className="text-white/60 uppercase tracking-[0.4em] text-xs font-bold group-hover:text-white transition-colors">
+                Onboarding starten
+            </span>
+            <div className="absolute -inset-20 bg-highlight-blue/10 blur-[120px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          </button>
         ) : (
           <>
             {/* Audio Toggle */}
