@@ -10,6 +10,8 @@ export default {
         void: {
           navy: "#0A0C12",
           depth: "#0E1018",
+          ink: "#050507",
+          black: "#000001",
         },
         card: {
           surface: "#161A26",
@@ -20,6 +22,11 @@ export default {
         },
         highlight: {
           blue: "#5B8AF5",
+        },
+        neon: {
+          lime: "#c8f74f",
+          green: "#2af10c",
+          glow: "#9bf43a",
         },
         proof: {
           amber: "#F5A623",
