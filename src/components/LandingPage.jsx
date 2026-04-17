@@ -138,7 +138,7 @@ const LandingPage = () => {
         {!hasStarted ? (
           <button
             onClick={startExperience}
-            className="group relative flex flex-col items-center gap-4"
+            className="group relative flex flex-col items-center gap-4 outline-none focus:outline-none"
           >
             <div style={{ width: '280px', height: '280px', position: 'relative' }}>
               <Orb
