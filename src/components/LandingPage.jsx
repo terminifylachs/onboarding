@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { gsap } from 'gsap'
 import confetti from 'canvas-confetti'
-import { ExternalLink, Volume2, VolumeX, Rocket, ArrowUp } from 'lucide-react'
+import { ExternalLink, Play, Volume2, VolumeX } from 'lucide-react'
+import Orb from './Orb'
+import SoftAurora from './SoftAurora'
 import logo from '../../infos/logo.png'
 import logoHead from '../../infos/logo-robot-head-part.png'
 import logoText from '../../infos/logo-text-part-terminify.png'
@@ -12,15 +14,13 @@ const LandingPage = () => {
   const containerRef = useRef(null)
   const [hasStarted, setHasStarted] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
-  // Using local cinematic sound
   const audioRef = useRef(new Audio(cinematicSound))
 
   const startExperience = () => {
     setHasStarted(true)
-    // Unlock audio context for modern browsers
     audioRef.current.play().then(() => {
-        audioRef.current.pause()
-        audioRef.current.currentTime = 0
+      audioRef.current.pause()
+      audioRef.current.currentTime = 0
     }).catch(e => console.log("Audio unlock failed", e))
   }
 
@@ -31,14 +31,14 @@ const LandingPage = () => {
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } })
-      
+
       // 1. Loading Dots Loop
-      gsap.fromTo('.loading-dot', 
+      gsap.fromTo('.loading-dot',
         { opacity: 0.1, scale: 0.4 },
-        { 
-          opacity: 1, 
-          scale: 1, 
-          duration: 0.8, 
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
           stagger: {
             each: 0.15,
             repeat: -1,
@@ -50,29 +50,27 @@ const LandingPage = () => {
 
       // 2. Welcome Intro Sequence
       tl.add(() => {
-          // Play cinematic sound at the very beginning to capture the full buildup
           if (!isMuted) {
             audioRef.current.play().catch(e => console.log("Audio play failed", e))
           }
         }, 0.1)
-        .to('.welcome-title', { 
-          opacity: 1, 
-          y: 0, 
+        .to('.welcome-title', {
+          opacity: 1,
+          y: 0,
           duration: 1.4,
           ease: "expo.out"
         })
-        .fromTo('.logo-part-head', 
+        .fromTo('.logo-part-head',
           { x: -80, opacity: 0, scale: 0.7, filter: 'blur(10px)' },
           { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.8, ease: "expo.out" },
           "-=0.6"
         )
-        .fromTo('.logo-part-text', 
+        .fromTo('.logo-part-text',
           { x: 80, opacity: 0, scale: 0.7, filter: 'blur(10px)' },
           { x: 0, opacity: 1, scale: 1, filter: 'blur(0px)', duration: 1.8, ease: "expo.out" },
           "-=1.8"
         )
         .add(() => {
-          // Trigger confetti at the peak of the sound impact
           setTimeout(() => {
             confetti({
               particleCount: 150,
@@ -83,18 +81,19 @@ const LandingPage = () => {
             });
           }, 200);
         }, "-=1.0")
-        .to('.welcome-screen', { 
-          opacity: 0, 
-          duration: 1.5, 
+        .to('.welcome-screen', {
+          opacity: 0,
+          duration: 1.5,
           ease: "power4.inOut",
           delay: 1.5,
           onComplete: () => {
             gsap.set('.welcome-screen', { display: 'none' })
           }
         })
-      
+
       // 3. Hero Content Fade-in
-      tl.from('.hero-headline', { y: 30, opacity: 0 }, '-=0.5')
+      tl.from('.hero-badge', { y: 20, opacity: 0, duration: 0.8 }, '-=0.5')
+        .from('.hero-headline', { y: 30, opacity: 0 }, '-=0.6')
         .from('.video-container', { scale: 0.98, opacity: 0, duration: 1.5 }, '-=0.8')
         .from('.cta-button', { y: 20, opacity: 0, duration: 0.8 }, '-=1')
     }, containerRef)
@@ -109,26 +108,60 @@ const LandingPage = () => {
     <div ref={containerRef} className="relative min-h-screen bg-void-navy overflow-hidden flex flex-col font-sans">
       {/* Welcome Cinematic Overlay */}
       <div className="welcome-screen fixed inset-0 z-[100] bg-void-navy flex flex-col items-center justify-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-highlight-blue/10 via-transparent to-transparent opacity-50" />
-        
+        {/* Aurora background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            pointerEvents: 'none',
+            opacity: hasStarted ? 1 : 0.2,
+            transition: 'opacity 2s ease 0.3s',
+          }}
+        >
+          <SoftAurora
+            speed={0.1}
+            scale={1.2}
+            brightness={0.8}
+            color1="#4A6CF7"
+            color2="#9F43FE"
+            noiseFrequency={2.0}
+            noiseAmplitude={0.9}
+            bandHeight={0.5}
+            bandSpread={1.2}
+            octaveDecay={0.5}
+            layerOffset={1.5}
+            colorSpeed={0.6}
+            enableMouseInteraction={false}
+          />
+        </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-highlight-blue/10 via-transparent to-transparent opacity-50" style={{ pointerEvents: 'none' }} />
+
         {!hasStarted ? (
           <button
             onClick={startExperience}
             className="group relative flex flex-col items-center gap-4"
           >
-            <div className="w-24 h-24 rounded-full border border-highlight-blue/30 flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:border-highlight-blue group-hover:bg-highlight-blue/5 shadow-[0_0_50px_rgba(91,138,245,0.1)]">
-                <Rocket className="w-8 h-8 text-highlight-blue animate-pulse" />
+            <div style={{ width: '280px', height: '280px', position: 'relative' }}>
+              <Orb
+                hue={220}
+                hoverIntensity={0.5}
+                rotateOnHover={true}
+                forceHoverState={false}
+                backgroundColor="#0A0C12"
+              />
             </div>
-            <ArrowUp className="w-5 h-5 text-white/60 animate-bounce group-hover:text-white transition-colors" />
+            <div className="animate-bounce text-highlight-blue/50 group-hover:text-highlight-blue transition-colors">
+              <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 20 L8 6 M3 11 L8 5 L13 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
             <span className="text-white/60 uppercase tracking-[0.4em] text-xs font-bold group-hover:text-white transition-colors">
-                Onboarding starten
+              Onboarding starten
             </span>
-            <div className="absolute -inset-20 bg-highlight-blue/10 blur-[120px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </button>
         ) : (
           <>
             {/* Audio Toggle */}
-            <button 
+            <button
               onClick={() => setIsMuted(!isMuted)}
               className="absolute top-8 right-8 z-[110] p-3 rounded-full bg-white/5 border border-white/10 text-white/40 hover:text-white transition-colors"
             >
@@ -139,25 +172,25 @@ const LandingPage = () => {
               <h2 className="welcome-title opacity-0 translate-y-4 text-body-text uppercase tracking-[0.3em] font-medium text-xs md:text-sm mb-12">
                 Willkommen bei
               </h2>
-              
+
               <div className="flex items-center gap-6 md:gap-8 h-12 md:h-24 px-12">
-                <img 
-                  src={logoHead} 
-                  alt="" 
-                  className="logo-part-head h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(91,138,245,0.5)]" 
+                <img
+                  src={logoHead}
+                  alt=""
+                  className="logo-part-head h-full w-auto object-contain drop-shadow-[0_0_30px_rgba(91,138,245,0.5)]"
                 />
-                <img 
-                  src={logoText} 
-                  alt="Terminify" 
-                  className="logo-part-text h-[70%] md:h-[85%] w-auto object-contain" 
+                <img
+                  src={logoText}
+                  alt="Terminify"
+                  className="logo-part-text h-[70%] md:h-[85%] w-auto object-contain"
                 />
               </div>
 
               <div className="mt-16 flex gap-4">
                 {[...Array(5)].map((_, i) => (
-                  <div 
-                    key={i} 
-                    className="loading-dot w-1.5 h-1.5 rounded-full bg-highlight-blue shadow-[0_0_10px_rgba(91,138,245,0.8)]" 
+                  <div
+                    key={i}
+                    className="loading-dot w-1.5 h-1.5 rounded-full bg-highlight-blue shadow-[0_0_10px_rgba(91,138,245,0.8)]"
                   />
                 ))}
               </div>
@@ -181,6 +214,10 @@ const LandingPage = () => {
 
       {/* Hero Content */}
       <main className="relative z-10 flex flex-col items-center justify-center px-6 pt-16 pb-24 max-w-[1200px] mx-auto text-center flex-grow">
+        <div className="hero-badge mb-8 flex items-center gap-2 px-4 py-1.5 rounded-full bg-void-depth border border-highlight-blue/20 backdrop-blur-sm">
+          <span className="text-highlight-blue text-xs uppercase tracking-[0.2em] font-medium">✦ Onboarding</span>
+        </div>
+
         <h1 className="hero-headline text-2xl md:text-3xl lg:text-4xl font-black mb-12 leading-[1.1] tracking-[-0.02em]">
           <span className="text-highlight-blue">Schritt 1:</span> Schau dir das Video an.
         </h1>
